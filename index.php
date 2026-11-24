@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/js.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +37,44 @@
 <section class="bl-s" id="palette"><div class="bl-w bl-pal"><div><p class="bl-k">colour matcher</p><h2>Pick your jacket colour</h2><div class="bl-sw" role="radiogroup" aria-label="Jacket colour"><label><input type="radio" name="jc" value="0" checked><span style="background:#C1502E">Rust</span></label><label><input type="radio" name="jc" value="1"><span style="background:#E3A72F">Mustard</span></label><label><input type="radio" name="jc" value="2"><span style="background:#1F6F6B">Teal</span></label><label><input type="radio" name="jc" value="3"><span style="background:#6B7A3C">Olive</span></label><label><input type="radio" name="jc" value="4"><span style="background:#E9DCC4;color:#3D2B1F">Stone</span></label><label><input type="radio" name="jc" value="5"><span style="background:#1E2A44">Navy</span></label></div><div class="bl-pal-o" id="pc-o" aria-live="polite"></div></div><figure class="bl-tv bl-tv2"><img src="https://images.unsplash.com/photo-1780856473943-28877e35eb26?auto=format&fit=crop&w=480&h=380&q=75" alt="a woman in a patterned suit sitting on a ladder in sunlight" width="480" height="380" loading="lazy"></figure></div></section>
 
 <section class="bl-s bl-mus"><div class="bl-w bl-recs"><a href="what-is-a-blouson-guide.html"><span class="bl-vin"></span><span class="bl-sl"><small>Side A</small><b>What Is a Blouson?</b><em>History, details, fabrics and how it differs from a bomber.</em></span></a><a href="how-to-wear-a-blouson-guide.html"><span class="bl-vin"></span><span class="bl-sl"><small>Side B</small><b>How to Wear a Blouson</b><em>Proportions, outfits, colours and care.</em></span></a></div></section>
+<div id="loader" style="
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;">
+  <div id="spinner" style="
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;">
+  </div>
+</div>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<script>
+  const loader = document.getElementById('loader');
+
+  function showLoader() { loader.style.display = 'flex'; }
+  function hideLoader() { loader.style.display = 'none'; }
+
+  async function fetchData() {
+    showLoader();
+    try {
+      await new Promise(r => setTimeout(r, 4000)); // 4 sec
+    } finally {
+      hideLoader();
+    }
+  }
+  fetchData();
+</script>
 
 </main>
 <footer class="bl-ft"><div class="bl-stripes" aria-hidden="true"></div><div class="bl-w"><div class="bl-ft-g"><div><a class="logo" href="./"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4a16 16 0 0 1 16 16H4A16 16 0 0 1 20 4z" fill="#E3A72F"/><path d="M20 9a11 11 0 0 1 11 11H9A11 11 0 0 1 20 9z" fill="#C1502E"/><path d="M20 14a6 6 0 0 1 6 6H14a6 6 0 0 1 6-6z" fill="#1F6F6B"/><path d="M6 24h28l-3 12H9z" fill="#3D2B1F"/><path d="M8 32q12 4 24 0" fill="none" stroke="#E3A72F" stroke-width="2"/></svg><span>Blouson</span></a><p>A groovy, independent guide to the blouson jacket: the gathered-waist classic, its cousins and how to wear it today.</p></div><div><h4>Side A</h4><a href="what-is-a-blouson-guide.html">What Is a Blouson?</a><a href="how-to-wear-a-blouson-guide.html">How to Wear a Blouson</a><a href="./#mixer">Proportion mixer</a><a href="./#palette">Colour matcher</a></div><div><h4>Side B</h4><a href="about.html">About</a><a href="contact.html">Contact</a><a href="editorial-policy.html">Editorial Policy</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-and-conditions.html">Terms &amp; Conditions</a><a href="cookie-policy.html">Cookie Policy</a><a href="disclaimer.html">Disclaimer</a></div><div><h4>Liner notes</h4><p>181 Mercer Street, New York, NY 10012, United States</p><a href="tel:+18887775845">+1-888-777-5845</a><a href="mailto:hello@blouson.com">hello@blouson.com</a></div></div><p class="bl-ft-c">&copy; <span id="year">2026</span> Blouson &middot; Keep it loose up top.</p></div></footer>
